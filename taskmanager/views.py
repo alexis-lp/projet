@@ -36,3 +36,8 @@ def projects(request):
     user_projects = Project.objects.filter(members=request.user)
     return render(request,'taskmanager/projects.html',locals())
 
+def project(request,id_du_projet):
+    projet = Project.objects.get(pk=id_du_projet)
+    tasks = Task.objects.filter(project=projet)
+    return render(request,'taskmanager/project.html',locals())
+

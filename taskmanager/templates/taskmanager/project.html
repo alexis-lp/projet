@@ -1,0 +1,50 @@
+{%  extends './projects.html' %}
+
+{%  block content %}
+    <div class="row">
+        <div class="col-sm-11">
+            <h1>{{ projet.name }}</h1>
+        </div>
+        <div class="col-sm-1">
+            <a href={% url "list_projects" %}>
+                <span class="fa fa-plus-circle fa-4x" style="color: blue"></span>
+            </a>
+        </div>
+
+    </div>
+    <hr/>
+
+
+    <table class="table table-hover table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th class="text-center align-middle">Task</th>
+            <th class="text-center align-middle">Assignee</th>
+            <th class="text-center align-middle">Start date</th>
+            <th class="text-center align-middle">Due date</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+            <tr>
+                <td><a href={% url "list_projects" %}>{{ task.name }}</a></td>
+                <td>{{ task.assignee.first_name }} {{ task.assignee.last_name }} </td>
+                <td class="font-italic">{{ task.start_date }} </td>
+                <td class="font-italic">{{ task.due_date }} </td>
+                <td class="text-center">
+                    <a href={%  url "list_projects" %}>
+                        <i class="fa fa-edit" style="color: blue"></i>
+                    </a>
+                </td>
+            </tr>
+
+        {% empty %}
+            <p> Aucune tâche dans le projet.</p>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="col-sm-4"></div>
+{%  endblock %}
+

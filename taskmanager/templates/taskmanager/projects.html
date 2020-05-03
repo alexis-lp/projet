@@ -11,13 +11,14 @@
     </div>
 
 {% endblock %}
+
 {% block content %}
     <h1>Projets</h1>
     <div class="col-sm-8 ">
-        <table class="table table-hover table-bordered" ">
+        <table class="table table-hover table-bordered" >
         {% for project in user_projects %}
             <tr>
-                <td> {{ project.name }}</a></td>
+                <td> <a href={%  url "Contenu du projet" project.id %}>{{ project.name }}</a></td>
             </tr>
 
         {% empty %}
