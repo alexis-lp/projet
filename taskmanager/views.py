@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from .forms import *
+from .models import *
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 
@@ -19,6 +20,7 @@ def connexion(request):
 
             if user and user.is_active:
                 login(request, user)
+                return redirect(reverse('list_projects'))
             else:
                 error = True
     else:
@@ -30,6 +32,7 @@ def deconnexion(request):
     logout(request)
     return redirect(reverse('connexion'))
 
-def home(request):
-    return render(request,'taskmanager/home.html',locals())
+def projects(request):
+    user_projects = Project.objects.filter(members=request.user)
+    return render(request,'taskmanager/projects.html',locals())
 

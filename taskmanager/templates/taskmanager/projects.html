@@ -1,0 +1,30 @@
+{%  extends 'base.html' %}
+{% block user %}
+    <div class="col-sm-11 text-black-50">
+        Welcome {{ user.first_name }} {{ user.last_name }}
+        
+    </div>
+    <div class="col-sm-1">
+        <a href={% url 'deconnexion' %}>
+            <span class=" fa fa-sign-out pull-right fa-5x" style="color: blue"></span>
+        </a>
+    </div>
+
+{% endblock %}
+{% block content %}
+    <h1>Projets</h1>
+    <div class="col-sm-8 ">
+        <table class="table table-hover table-bordered" ">
+        {% for project in user_projects %}
+            <tr>
+                <td> {{ project.name }}</a></td>
+            </tr>
+
+        {% empty %}
+        <p> Vous n'avez aucun projet en cours.</p>
+        {% endfor %}
+    </table>
+    </div>
+    <div class="col-sm-4"></div>
+
+{% endblock %}
