@@ -38,7 +38,7 @@ def projects(request):
 
 def project(request,id_du_projet):
     project = Project.objects.get(pk=id_du_projet)
-    tasks = Task.objects.filter(project=projet)
+    tasks = Task.objects.filter(project=project)
     return render(request,'taskmanager/project.html',locals())
 
 
