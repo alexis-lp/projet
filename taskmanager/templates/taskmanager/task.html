@@ -1,0 +1,96 @@
+{% extends './project.html' %}
+
+{%  block path %}
+    <a href={% url 'list_projects' %}>Projets</a>
+    /
+    <a href={% url 'Contenu du projet' task.project.id %}>{{ task.project.name }}</a>
+    /
+    <a href={% url 'Journal de la tâche' task.id %}>{{ task.name }}</a>
+
+{%  endblock %}
+
+{%  block content %}
+    <br/>
+    <div class="row">
+        <div class="col-sm-11">
+            <h3>{{ task.project.name }}</h3>
+        </div>
+        <div class="col-sm-1">
+            <a href={% url "list_projects" %}>
+                <span class="fa fa-edit fa-3x" style="color: blue"></span>
+            </a>
+        </div>
+
+    </div>
+
+    <h5>{{ task.name }}</h5>
+    <p>{{ task.description }}</p>
+    <ul class="list-group list-group-flush " style="font-size: 13px">
+        <li class="list-group-item p-2">
+            <div class="row">
+                <div class="col">
+                    <strong>Assignee</strong>
+                </div>
+                <div class="col">
+                    {{ task.assignee }}
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item p-2">
+            <div class="row">
+                <div class="col">
+                    <strong>Start Date</strong>
+                </div>
+                <div class="col font-italic">
+                    {{ task.start_date }}
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item p-2">
+            <div class="row">
+                <div class="col">
+                    <strong>Due Date</strong>
+                </div>
+                <div class="col font-italic">
+                    {{ task.start_date }}
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item p-2">
+            <div class="row">
+                <div class="col">
+                    <strong>Satus</strong>
+                </div>
+                <div class="col">
+                    {{ task.status }}
+                </div>
+            </div>
+        </li>
+    </ul>
+    <br/>
+    <p><strong>History</strong></p>
+
+    <ul class="list-group list-group-flush" style="font-size: 13px">
+        {% for history in journal %}
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-sm-2">
+                        {{ history.author }}
+                    </div>
+                    <div class="col-sm-2 font-italic">
+                        {{ history.date }}
+                    </div>
+                    <div class="col-sm-8">
+                        {{ history.entry }}
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+
+    </ul>
+
+
+
+
+
+{%  endblock %}

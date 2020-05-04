@@ -33,7 +33,12 @@
     </div>
     <!-- Contenu principal de la page -->
     <div class="container-fluid">
-        <i class="fas fa-sign-out-alt"></i>
+        <br/>
+        <div class="container-fluid bg-light">
+            {% block path %}
+            {% endblock %}
+        </div>
+        <br/>
         {% block content %}
         {% endblock %}
     </div>

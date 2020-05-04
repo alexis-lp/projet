@@ -41,3 +41,8 @@ def project(request,id_du_projet):
     tasks = Task.objects.filter(project=projet)
     return render(request,'taskmanager/project.html',locals())
 
+
+def task(request,id_task):
+    task = Task.objects.get(pk=id_task)
+    journal = Journal.objects.filter(task=task)
+    return render(request,'taskmanager/task.html',locals())

@@ -24,7 +24,7 @@ class Task(models.Model):
     project = models.ForeignKey(Project,on_delete=models.CASCADE)
     name = models.CharField(max_length=300)
     description = models.TextField()
-    assignee = models.ForeignKey(User,on_delete=models.PROTECT)
+    assignee = models.ForeignKey(User, on_delete=models.PROTECT)
     start_date = models.DateField()
     due_date = models.DateField()
     priority = models.IntegerField()
@@ -35,3 +35,15 @@ class Task(models.Model):
 
     def __str__(self):
         return self.name
+
+class Journal(models.Model):
+    date = models.DateTimeField()
+    entry = models.CharField(max_length=100)
+    author = models.ForeignKey(User,on_delete=models.CASCADE)
+    task = models.ForeignKey(Task,on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name= 'journal'
+
+    def __str__(self):
+        return "Commentaire du {0}".format(self.date)

@@ -1,4 +1,9 @@
 {%  extends './projects.html' %}
+{%  block path %}
+    <a href={% url 'list_projects' %}>Projets</a>
+    /
+    <a href={% url 'Contenu du projet' projet.id %}>{{ projet.name }}</a>
+{%  endblock %}
 
 {%  block content %}
     <div class="row">
@@ -28,7 +33,7 @@
         <tbody>
         {% for task in tasks %}
             <tr>
-                <td><a href={% url "list_projects" %}>{{ task.name }}</a></td>
+                <td><a href={% url "Journal de la tâche" task.id %}>{{ task.name }}</a></td>
                 <td>{{ task.assignee.first_name }} {{ task.assignee.last_name }} </td>
                 <td class="font-italic">{{ task.start_date }} </td>
                 <td class="font-italic">{{ task.due_date }} </td>
