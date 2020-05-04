@@ -33,7 +33,7 @@
         <tbody>
         {% for task in tasks %}
             <tr>
-                <td><a href={% url "Journal de la tâche" task.id %}>{{ task.name }}</a></td>
+                <td><a href={% url "Journal de la tâche" task.project.id task.id %}>{{ task.name }}</a></td>
                 <td><span class="badge badge-primary">{{ task.assignee.first_name }} {{ task.assignee.last_name }} </span> </td>
                 <td class="font-italic">{{ task.start_date }} </td>
                 <td class="font-italic">{{ task.due_date }} </td>
