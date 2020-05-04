@@ -2,7 +2,7 @@
 {%  block path %}
     <a href={% url 'list_projects' %}>Projets</a>
     /
-    <a href={% url 'Contenu du projet' projet.id %}>{{ projet.name }}</a>
+    <a href={% url 'Contenu du projet' project.id %}>{{ projet.name }}</a>
 {%  endblock %}
 
 {%  block content %}

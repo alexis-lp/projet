@@ -37,7 +37,7 @@ def projects(request):
     return render(request,'taskmanager/projects.html',locals())
 
 def project(request,id_du_projet):
-    projet = Project.objects.get(pk=id_du_projet)
+    project = Project.objects.get(pk=id_du_projet)
     tasks = Task.objects.filter(project=projet)
     return render(request,'taskmanager/project.html',locals())
 
@@ -47,5 +47,19 @@ def task(request,id_du_projet,id_task):
     journal = Journal.objects.filter(task=task)
     return render(request,'taskmanager/task.html',locals())
 
-def newtask(request):
-    return
+def newtask(request,id_du_projet):
+    error = False
+    project = Project.objects.get(pk=id_du_projet)
+    form = TaskForm(request.POST or None)
+
+    if form.is_valid():
+        task = form.save(commit=False)
+        task.project = project
+        user_assigned = task.assignee
+        if user_assigned in project.members:
+            task.save()
+            return redirect(reverse('Journal de la tâche', args=[project.id, task.id]))
+        else:
+            error = True
+
+    return render(request,'taskmanager/newtask.html',locals())

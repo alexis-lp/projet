@@ -21,14 +21,14 @@ class Status(models.Model):
         return self.name
 
 class Task(models.Model):
-    project = models.ForeignKey(Project,on_delete=models.CASCADE)
-    name = models.CharField(max_length=300)
-    description = models.TextField()
-    assignee = models.ForeignKey(User, on_delete=models.PROTECT)
-    start_date = models.DateField()
-    due_date = models.DateField()
-    priority = models.IntegerField()
-    status = models.ForeignKey(Status,on_delete=models.CASCADE)
+    project = models.ForeignKey(Project,on_delete=models.CASCADE,verbose_name="project")
+    name = models.CharField(max_length=300,verbose_name="name")
+    description = models.TextField(verbose_name="description")
+    assignee = models.ForeignKey(User, on_delete=models.PROTECT,verbose_name="assignee")
+    start_date = models.DateField(verbose_name="start date")
+    due_date = models.DateField(verbose_name="due date")
+    priority = models.IntegerField(verbose_name="priority")
+    status = models.ForeignKey(Status,on_delete=models.CASCADE,verbose_name="status")
 
     class Meta:
         verbose_name = 'tâche'
@@ -47,3 +47,4 @@ class Journal(models.Model):
 
     def __str__(self):
         return "Commentaire du {0}".format(self.date)
+

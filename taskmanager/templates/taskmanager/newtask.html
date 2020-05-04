@@ -1,0 +1,20 @@
+{% extends './projects.html' %}
+
+{%  block path %}
+    <a href={% url 'list_projects' %}>Projets </a>
+    /
+    <a href={% url 'Contenu du projet' project.id %}> {{ project.name }} </a>
+    /
+    <a href={% url "Création d'une tâche" project.id %}> Nouvelle tâche </a>
+{%  endblock %}
+
+{% block content %}
+    {% if error %}
+    <p><strong>L'utilisateur rentré ne fait pas partie du projet</strong></p>
+    {% endif %}
+    <form action="{% url "Création d'une tâche" project.id %}" method="POST" >
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" class="btn btn-primary"/>
+    </form>
+{% endblock %}
