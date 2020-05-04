@@ -9,5 +9,6 @@ urlpatterns = [
     path('project/<int:id_du_projet>',views.project,name='Contenu du projet'),
     path('project/<int:id_du_projet>/task/<int:id_task>',views.task,name="Journal de la tâche"),
     path('project/<int:id_du_projet>/newtask',views.newtask,name="Création d'une tâche"),
+    path('project/<int:id_du_projet>/task/edittask/<int:id_task>',views.edittask,name="Modifier la tâche"),
 
 ]

@@ -16,7 +16,7 @@
             <h3>{{ task.project.name }}</h3>
         </div>
         <div class="col-sm-1">
-            <a href={% url "list_projects" %}>
+            <a href={% url "Modifier la tâche" task.project.id task.id %}>
                 <span class="fa fa-edit fa-3x" style="color: blue"></span>
             </a>
         </div>

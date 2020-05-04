@@ -56,10 +56,29 @@ def newtask(request,id_du_projet):
         task = form.save(commit=False)
         task.project = project
         user_assigned = task.assignee
-        if user_assigned in project.members:
+        if user_assigned in project.members.all():
             task.save()
             return redirect(reverse('Journal de la tâche', args=[project.id, task.id]))
         else:
             error = True
 
     return render(request,'taskmanager/newtask.html',locals())
+
+def edittask(request,id_du_projet,id_task):
+    error = False
+    task = Task.objects.get(pk=id_task)
+    project = Project.objects.get(pk=id_du_projet)
+
+    if request.method == "POST":
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            edit_task=form.save(commit=False)
+            user_assigned = edit_task.assignee
+            if user_assigned in project.members.all():
+                edit_task.save()
+                return redirect(reverse('Journal de la tâche', args=[project.id, task.id]))
+            else:
+                error = True
+    else:
+        form = TaskForm(instance=task)
+    return render(request, 'taskmanager/edittask.html', locals())
