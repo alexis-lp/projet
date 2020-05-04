@@ -32,7 +32,7 @@
                     <strong>Assignee</strong>
                 </div>
                 <div class="col">
-                    {{ task.assignee }}
+                    <span class="badge badge-primary">{{ task.assignee.first_name }} {{ task.assignee.last_name }}</span>
                 </div>
             </div>
         </li>
@@ -75,7 +75,7 @@
             <li class="list-group-item">
                 <div class="row">
                     <div class="col-sm-2">
-                        {{ history.author }}
+                        <span class="badge badge-primary">{{ history.author.first_name }} {{ history.author.last_name }}</span>
                     </div>
                     <div class="col-sm-2 font-italic">
                         {{ history.date }}
@@ -86,11 +86,6 @@
                 </div>
             </li>
         {% endfor %}
-
     </ul>
-
-
-
-
 
 {%  endblock %}
