@@ -6,7 +6,6 @@
     <a href={% url 'Contenu du projet' task.project.id %}>{{ task.project.name }}</a>
     /
     <a href={% url 'Journal de la tâche' task.project.id task.id %}>{{ task.name }}</a>
-
 {%  endblock %}
 
 {%  block content %}

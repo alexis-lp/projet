@@ -126,5 +126,5 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
-
+#Url utilisé pour rediriger l'utilisateur vers la page de connexion
 LOGIN_URL = 'connexion'
