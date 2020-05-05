@@ -2,10 +2,12 @@ from django.shortcuts import render,redirect
 from .forms import *
 from .models import *
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
-
-# Create your views here.
+"""
+La fonction 
+"""
 
 
 def connexion(request):
@@ -28,25 +30,29 @@ def connexion(request):
 
     return render(request, 'taskmanager/connexion.html', locals())
 
+
 def deconnexion(request):
     logout(request)
     return redirect(reverse('connexion'))
 
+@login_required
 def projects(request):
     user_projects = Project.objects.filter(members=request.user)
     return render(request,'taskmanager/projects.html',locals())
 
+@login_required
 def project(request,id_du_projet):
     project = Project.objects.get(pk=id_du_projet)
     tasks = Task.objects.filter(project=project)
     return render(request,'taskmanager/project.html',locals())
 
-
+@login_required
 def task(request,id_du_projet,id_task):
     task = Task.objects.get(pk=id_task)
     journal = Journal.objects.filter(task=task)
     return render(request,'taskmanager/task.html',locals())
 
+@login_required
 def newtask(request,id_du_projet):
     error = False
     project = Project.objects.get(pk=id_du_projet)
@@ -64,6 +70,7 @@ def newtask(request,id_du_projet):
 
     return render(request,'taskmanager/newtask.html',locals())
 
+@login_required
 def edittask(request,id_du_projet,id_task):
     error = False
     task = Task.objects.get(pk=id_task)
