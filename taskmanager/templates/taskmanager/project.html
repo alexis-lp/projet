@@ -37,12 +37,22 @@
         </tr>
         </thead>
         <tbody>
+        <!--Pour chaque tâche du projet -->
         {% for task in tasks %}
             <tr>
+                <!-- On affiche son nom avec un lien vers les détails de la tâche -->
                 <td><a href={% url "Journal de la tâche" task.project.id task.id %}>{{ task.name }}</a></td>
+
+                <!-- On affiche le nom complet de l'utilisateur assigné avec un badge bleu -->
                 <td><span class="badge badge-primary">{{ task.assignee.first_name }} {{ task.assignee.last_name }} </span> </td>
+
+                <!-- On affiche la date de début de la tâche -->
                 <td class="font-italic">{{ task.start_date }} </td>
+
+                <!-- On affiche la date de fin de la tâche -->
                 <td class="font-italic">{{ task.due_date }} </td>
+
+                <!-- Bouton pour modifier la tâche -->
                 <td class="text-center">
                     <a href={%  url "Modifier la tâche" task.project.id task.id %}>
                         <i class="fa fa-edit" style="color: blue"></i>
@@ -50,6 +60,7 @@
                 </td>
             </tr>
 
+        <!-- Si le projet ne contient aucune tâche -->
         {% empty %}
             <p> Aucune tâche dans le projet.</p>
         {% endfor %}

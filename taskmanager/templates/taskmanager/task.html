@@ -8,8 +8,10 @@
     <a href={% url 'Journal de la tâche' task.project.id task.id %}>{{ task.name }}</a>
 {%  endblock %}
 
+<!-- Détails de la tâche-->
 {%  block content %}
     <br/>
+    <!-- Titre du projet et bouton pour modifier la tâche-->
     <div class="row">
         <div class="col-sm-11">
             <h3>{{ task.project.name }}</h3>
@@ -19,12 +21,14 @@
                 <span class="fa fa-edit fa-3x" style="color: blue"></span>
             </a>
         </div>
-
     </div>
 
+    <!--Détail des informations de la tâche -->
     <h5>{{ task.name }}</h5>
     <p>{{ task.description }}</p>
+    <!--Liste non ordonnée des caractéristiques de la tâche -->
     <ul class="list-group list-group-flush " style="font-size: 13px">
+        <!-- L'utilisateur assigné -->
         <li class="list-group-item p-2">
             <div class="row">
                 <div class="col">
@@ -35,6 +39,7 @@
                 </div>
             </div>
         </li>
+        <!-- La date de début -->
         <li class="list-group-item p-2">
             <div class="row">
                 <div class="col">
@@ -45,16 +50,20 @@
                 </div>
             </div>
         </li>
+
+        <!-- La date de fin -->
         <li class="list-group-item p-2">
             <div class="row">
                 <div class="col">
                     <strong>Due Date</strong>
                 </div>
                 <div class="col font-italic">
-                    {{ task.start_date }}
+                    {{ task.due_date }}
                 </div>
             </div>
         </li>
+
+        <!-- Le statut de la tâche -->
         <li class="list-group-item p-2">
             <div class="row">
                 <div class="col">
@@ -67,18 +76,23 @@
         </li>
     </ul>
     <br/>
+    <!-- Début du journal de commentaires sur la tâche -->
     <p><strong>History</strong></p>
-
+    <!-- Liste des commentaires -->
     <ul class="list-group list-group-flush" style="font-size: 13px">
         {% for history in journal %}
             <li class="list-group-item">
                 <div class="row">
+                    <!-- Le nom complet de l'auteur du commentaire -->
                     <div class="col-sm-2">
                         <span class="badge badge-primary">{{ history.author.first_name }} {{ history.author.last_name }}</span>
                     </div>
+                    <!-- La date d'écriture du commentaire -->
                     <div class="col-sm-2 font-italic">
                         {{ history.date }}
                     </div>
+
+                    <!-- Le contenu du commentaire -->
                     <div class="col-sm-8">
                         {{ history.entry }}
                     </div>
@@ -86,5 +100,4 @@
             </li>
         {% endfor %}
     </ul>
-
 {%  endblock %}
