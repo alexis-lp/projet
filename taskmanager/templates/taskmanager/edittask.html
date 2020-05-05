@@ -12,9 +12,12 @@
 {%  endblock %}
 
 {% block content %}
+    <!-- L'utilisateur assigné ne fait pas partie du projet -->
     {% if error %}
     <p><strong>L'utilisateur rentré ne fait pas partie du projet</strong></p>
     {% endif %}
+
+    <!--Le formulaire de modification de la tâche -->
     <form action="{% url "Modifier la tâche" project.id task.id %}" method="POST" >
         {% csrf_token %}
         {{ form.as_p }}

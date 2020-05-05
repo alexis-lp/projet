@@ -8,10 +8,14 @@
     <a href={% url "Création d'une tâche" project.id %}> Nouvelle tâche </a>
 {%  endblock %}
 
+<!-- Formulaire de création d'une tâche -->
 {% block content %}
+    <!-- L'utilisateur assigné ne fait pas partie du projet -->
     {% if error %}
     <p><strong>L'utilisateur rentré ne fait pas partie du projet</strong></p>
     {% endif %}
+
+    <!--Le formulaire de création -->
     <form action="{% url "Création d'une tâche" project.id %}" method="POST" >
         {% csrf_token %}
         {{ form.as_p }}

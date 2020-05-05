@@ -3,12 +3,13 @@
 
 {% block content %}
 
-
+    <!-- Si l'utilisateur rentre une mauvaise combinaison username/password -->
     {% if error %}
     <p><strong>Utilisateur inconnu ou mot de passe incorrect</strong></p>
     {% endif %}
 
     <div class="col-sm-1"></div>
+    <!-- Formulaire de connexion -->
     <div class="col-sm-5">
         <form method="post" action= {% url 'connexion' %}>
             {% csrf_token %}
